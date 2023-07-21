@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  web:
+    build: ./web
+    volumes:
+      - "./web/www:/var/www/html"
+    ports:
+      - "8000:80"
+      # - "443:443"
+    # environment:
+      # MYSQL_DB_CONNECTION: test
+      # MYSQL_DB_NAME: test
+      # MYSQL_USER: test
+      # MYSQL_PASSWORD: test
+      # SITE_URL: http://localhost/
+      # SITE_URL: http://localhost:8000/
+    networks:
+      - netcrud
+  db:
+    build: ./db
+    volumes:
+      - "db-data:/var/lib/mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=abc123
+    networks:
+      - netcrud
+
+networks:
+  netcrud:
+volumes:
+  db-data:

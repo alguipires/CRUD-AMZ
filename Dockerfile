@@ -1,6 +1,13 @@
 # Use a imagem oficial do PHP com o Apache
 FROM php:7.4-apache
 
+ARG UNAME=www-data
+ARG UGROUP=www-data
+ARG UID=1000
+ARG GID=1001
+RUN usermod  --uid $UID $UNAME
+RUN groupmod --gid $GID $UGROUP
+
 # Atualize e instale a extensão intl e mbstring, bem como o pacote oniguruma
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y libicu-dev libonig-dev && \
@@ -11,10 +18,10 @@ RUN apt-get update && apt-get upgrade -y && \
 # Copie o arquivo de configuração do site para o diretório do Apache
 COPY my-site.conf /etc/apache2/sites-available/my-site.conf
 
-# Crie o diretório writable e defina as permissões corretas
-RUN mkdir -p /var/www/html/writable && \
-    chown -R www-data:www-data /var/www/html/writable && \
-    chmod -R 777 /var/www/html/writable
+# # Crie o diretório writable e defina as permissões corretas
+# RUN mkdir -p /var/www/html/writable && \
+#     chown -R www-data:www-data /var/www/html/writable && \
+#     chmod -R 777 /var/www/html/writable
 
 # Configurações adicionais do Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\

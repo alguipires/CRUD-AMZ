@@ -1,31 +1,40 @@
 version: "3.8"
+x-app: &app
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - ".:/var/www/html"
+  depends_on:
+    - db
+  networks:
+    - app-network
+
 services:
   web:
-    build: ./web
-    volumes:
-      - "./web/www:/var/www/html"
+    <<: *app
     ports:
       - "8000:80"
-      # - "443:443"
-    # environment:
-      # MYSQL_DB_CONNECTION: test
-      # MYSQL_DB_NAME: test
-      # MYSQL_USER: test
-      # MYSQL_PASSWORD: test
-      # SITE_URL: http://localhost/
-      # SITE_URL: http://localhost:8000/
     networks:
       - netcrud
+
   db:
-    build: ./db
+    image: mysql:8-debian
     volumes:
       - "db-data:/var/lib/mysql"
+      - "./app/Database/crud.sql:/docker-entrypoint-initdb.d/crud.sql"
+    # build: ./db
+    # volumes:
+    #   - "db-data:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=abc123
     networks:
       - netcrud
 
-networks:
-  netcrud:
 volumes:
   db-data:
+    driver: local
+
+networks:
+  netcrud:
+    driver: bridge

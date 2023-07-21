@@ -14,13 +14,13 @@ COPY ./www /var/www/html
 # Copie o arquivo de configuração do site para o diretório do Apache
 COPY my-site.conf /etc/apache2/sites-available/my-site.conf
 
-# Configurações adicionais do Apache
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\
-    a2enmod rewrite &&\
-    a2enmod headers &&\
-    a2dissite 000-default &&\
-    a2ensite my-site &&\
-    service apache2 restart
+# # Configurações adicionais do Apache
+# RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\
+#     a2enmod rewrite &&\
+#     a2enmod headers &&\
+#     a2dissite 000-default &&\
+#     a2ensite my-site &&\
+#     service apache2 restart
 
 # Copie o arquivo de script para o diretório do container / scrip responsavel para mudar a permisão da pasta writable de cache para chmod 755
 COPY set_permissions.sh /var/www/html/
@@ -29,5 +29,13 @@ COPY set_permissions.sh /var/www/html/
 RUN chmod +x /var/www/html/set_permissions.sh && \
     /var/www/html/set_permissions.sh && \
     rm /var/www/html/set_permissions.sh
+
+# Configurações adicionais do Apache
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf &&\
+    a2enmod rewrite &&\
+    a2enmod headers &&\
+    a2dissite 000-default &&\
+    a2ensite my-site &&\
+    service apache2 restart
 
 EXPOSE 80

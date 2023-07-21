@@ -7,13 +7,13 @@ services:
     ports:
       - "8000:80"
       # - "443:443"
-    environment:
+    # environment:
       # MYSQL_DB_CONNECTION: test
       # MYSQL_DB_NAME: test
       # MYSQL_USER: test
       # MYSQL_PASSWORD: test
       # SITE_URL: http://localhost/
-      SITE_URL: http://localhost:8000/
+      # SITE_URL: http://localhost:8000/
     networks:
       - netcrud
   db:
@@ -29,75 +29,3 @@ networks:
   netcrud:
 volumes:
   db-data:
-# TALVEZ..
-# version: "3.8"
-
-# x-app: &app
-#   build:
-#     context: ./
-#     dockerfile: Dockerfile
-#   ports:
-#     - 80:80
-#   volumes:
-#       - "./web:/var/www/html"
-#   networks:
-#     - app-network
-#   depends_on:
-#     - db
-
-# services:
-#   web:
-#     <<: *app
-#     # ports:
-#     #   - "8000:80"
-#   db:
-#     build: ./db
-#     volumes:
-#       - "db-data:/var/lib/mysql"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=abc123
-#     networks:
-#       - app-network
-
-# networks:
-#   app-network:
-#     driver: bridge
-
-# volumes:
-#   db-data:
-
-
-
-
-
-# version: "3.8"
-
-# x-app: &app
-#   build:
-#     context: .
-#     dockerfile: Dockerfile
-#   volumes:
-#       - "./:/var/www/html"
-#   networks:
-#     - app-network
-
-# services:
-#   web:
-#     <<: *app
-#     ports:
-#       - "8000:80"  # Mapeia a porta 8000 do host para a porta 80 do contêiner
-#   db:
-#     build: ./db
-#     volumes:
-#       - "db-data:/var/lib/mysql"
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=abc123
-#     networks:
-#       - app-network
-
-# networks:
-#   app-network:
-#     driver: bridge
-
-# volumes:
-#   db-data:

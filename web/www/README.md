@@ -1,3 +1,8 @@
+# pasta bd 
+esgta os arquivos do container mysql e seu schema inicial.
+para laterar o schema inicial usa ro crud.sql
+
+
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?

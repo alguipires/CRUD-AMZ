@@ -30,6 +30,8 @@ services:
       - MYSQL_ROOT_PASSWORD=abc123
     networks:
       - netcrud
+    ports:
+      - 3306:3306
 
 volumes:
   db-data:

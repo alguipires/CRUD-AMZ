@@ -32,6 +32,9 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('/pages', 'Pages::index');
 
+$routes->get('/login', 'Login::index', ['as' => 'login']);
+
+$routes->post('/login', 'Login::store', ['as' => 'login.store']);
 
 /*
  * --------------------------------------------------------------------

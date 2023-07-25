@@ -58,3 +58,4 @@ acessar bash web
 - Autenticação com codeigniter shield
 - Responsividade
 - Paginação
+- Testes e container teste Selenium

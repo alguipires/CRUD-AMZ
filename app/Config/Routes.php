@@ -29,12 +29,22 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->get('/pages', 'Pages::index');
 
+//ROTAS PUBLICAS
+$routes->get('/', 'Home::index', ['as' => 'home']);
 $routes->get('/login', 'Login::index', ['as' => 'login']);
-
 $routes->post('/login', 'Login::store', ['as' => 'login.store']);
+$routes->get('/login/destroy', 'Login::destroy', ['as' => 'login.destroy']);
+
+//ROTAS GRUPO USER
+$routes->group('users', ['filter' => 'auth'], function ($routes) {
+    $routes->get('', 'User::index', ['as' => 'users']);
+    $routes->get('form', 'User::form', ['as' => 'users.form']);                      
+    $routes->post('', 'User::new', ['as' => 'users.new']);                
+    $routes->get('edit/(:num)', 'User::edit/$1', ['as' => 'users.edit']);
+    $routes->post('update/(:num)', 'User::update/$1', ['as' => 'users.update']);  
+    $routes->get('destroy/(:num)', 'User::destroy/$1', ['as' => 'users.destroy']);     
+});
 
 /*
  * --------------------------------------------------------------------

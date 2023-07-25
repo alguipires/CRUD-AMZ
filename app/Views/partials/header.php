@@ -1,14 +1,21 @@
 <header>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand">CRUD-AMZ</a>
+            <?php if (session()->has('user')) : ?>
+                <a href="<?php echo url_to('users') ?>" class="navbar-brand">CRUD-AMZ</a>
+            <?php endif ?>
+            <?php if (!session()->has('user')) : ?>
+                <a href="<?php echo url_to('home') ?>" class="navbar-brand">CRUD-AMZ</a>
+            <?php endif ?>
             <form class="d-flex" role="search">
-                <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-                <span class="badge text-bg-dark">Olá, User</span>
-                <button type="button" href="<?php echo url_to('login'); ?>" class="btn btn-outline-dark">Login</button>
-                <button type="button" class="btn btn-outline-dark">Logout</button>
-
+                <?php if (session()->has('user')) : ?>
+                    <a class="btn btn-secondary" href="<?php echo url_to('users') ?>" role="button"><?php echo session()->get('user')->name; ?></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-secondary" href="<?php echo url_to('login.destroy') ?>" role="button">Logout</a>
+                <?php endif ?>
+                <?php if (!session()->has('user')) : ?>
+                    <a class="btn btn-secondary" href="<?php echo url_to('login') ?>" role="button">Login</a>
+                <?php endif ?>
             </form>
         </div>
     </nav>

@@ -7,8 +7,3 @@
     </div>
   </div>
 </footer>
-
-
-<!-- JS -->
-<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/custom/js/custom.js') ?>"></script>

@@ -10,10 +10,10 @@ class User extends Model
     protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array'; //object
+    protected $returnType       = 'object'; //object
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id', 'name', 'email', 'password', 'phone', 'cep', 'street', 'neighborhood', 'number_house', 'city', 'state', 'country'];
 
     // Dates
     protected $useTimestamps = false;
@@ -30,7 +30,7 @@ class User extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['encryptPassword'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
@@ -38,4 +38,9 @@ class User extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function encryptPassword($args) {
+        $args['data']['password'] = password_hash($args['data']['password'], PASSWORD_DEFAULT);
+        return $args;
+    }
 }

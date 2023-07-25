@@ -2,3 +2,27 @@
     width: 100%;
     height: 100vh;
 }
+
+#content-form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    .form-login-inputs {
+        background-color: #dfd8d8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 30vh;
+        /* //border: 1px solid black; */
+        padding: 20px;
+        box-sizing: border-box;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+}

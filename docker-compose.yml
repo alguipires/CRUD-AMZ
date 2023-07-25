@@ -7,11 +7,16 @@ x-app: &app
     - ".:/var/www/html"
   depends_on:
     - db
-  networks:
-    - app-network
+  # tmpfs:
+  #   - /tmp
+  # networks:
+  #   - netcrud
+  # stdin_open: true
+  # tty: true
 
 services:
   web:
+    container_name: web
     <<: *app
     ports:
       - "8000:80"
@@ -19,6 +24,7 @@ services:
       - netcrud
 
   db:
+    container_name: db
     image: mysql:8-debian
     volumes:
       - "db-data:/var/lib/mysql"
@@ -39,4 +45,4 @@ volumes:
 
 networks:
   netcrud:
-    driver: bridge
+    # driver: bridge

@@ -10,6 +10,8 @@ class Home extends BaseController
     {
         return view('welcome_message');
     } */
+    
+    
 
     public function index($page = 'home')
     {
@@ -18,7 +20,7 @@ class Home extends BaseController
             throw new PageNotFoundException($page);
         } 
 
-        $data['title'] = ucfirst('Home CRUD-AMZ'); // Capitalize the first letter
+        $data['title'] = ucfirst('CRUD-AMZ'); // Capitalize the first letter
 
         return view($page, $data);
 

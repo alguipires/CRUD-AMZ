@@ -9,6 +9,7 @@ Foi feita utilizando:
 - Docker
 - Mysql
 - Api de busca de cep [VIACEP](https://viacep.com.br/)
+- Lib [FaKerPHP](https://fakerphp.github.io/)
 
 ## Requisitos para iniciar a aplicação 
 Ter as seguintes ferramentas instaladas em seu computador:
@@ -33,7 +34,8 @@ database.default.port = 3306
 ```
 
 ## Entrar na pasta raiz do projeto via terminal para rodar comandos de inicialização das migrates, seeders, dependências e contêineres.
-Comandos para inicialização.
+Comandos para inicialização...
+
 - `php composer install`
 - `docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID+$(id -g) .`
 - `docker compose up -d`
@@ -42,6 +44,13 @@ Comandos para inicialização.
 
 ## Pronto para iniciar em `http://localhost:8000/`
 Para o login, usuário `admin@admin.com` e senha `admin`
+
+(Opcional)
+Para inspecionar os contêineres..
+acessar container bd 
+`docker container exec -it db mysql -u root -p`
+acessar bash web
+`docker container exec -it web bash`
 
 ## Trabalhos futuros
 - Autenticação com codeigniter shield

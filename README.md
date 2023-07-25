@@ -18,7 +18,7 @@ Ter as seguintes ferramentas instaladas em seu computador:
 - [Composer](https://getcomposer.org/download/)
 - (opcional) [Uma ferramenta de manipulação do banco ex. Dbeaver](https://dbeaver.io/download/)
 
-# Passos para iniciar a aplicação
+## Passos para iniciar a aplicação
 Na raiz do projeto encontrará o arquivo `env` (contém as configurações do projeto), renomeie para `.env` e insira as configurações a seguir...
 
 ```
@@ -32,7 +32,7 @@ database.default.DBDriver = MySQLi
 database.default.port = 3306
 ```
 
-# Entrar na pasta raiz do projeto via terminal para rodar comandos de inicialização das migrates, seeders, dependências e contêineres.
+## Entrar na pasta raiz do projeto via terminal para rodar comandos de inicialização das migrates, seeders, dependências e contêineres.
 Comandos para inicialização.
 - `php composer install`
 - `docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID+$(id -g) .`
@@ -41,8 +41,9 @@ Comandos para inicialização.
 - `php spark db:seed User`
 
 ## Pronto para iniciar em `http://localhost:8000/`
+Para o login, usuário `admin@admin.com` e senha `admin`
 
-# Trabalhos futuros
+## Trabalhos futuros
 - Autenticação com codeigniter shield
 - Responsividade
 - Paginação

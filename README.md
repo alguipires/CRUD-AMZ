@@ -24,7 +24,7 @@ Ter as seguintes ferramentas instaladas em seu computador:
 ## Entrar na pasta raiz do projeto via terminal para rodar comandos de inicialização das migrates, seeders, dependências e contêineres.
 Comandos para inicialização...
 
-- `php composer install`
+- `composer install`
 - `docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID+$(id -g) .`
 - `docker compose up -d`
 - Necessário inspecionar o container "db" para pegar o ip local, rode o comando `docker container inspect db`, repare no resultado gerado no terminal, pegue endereço ip como ex: `"IPAddress": "172.20.0.2"`

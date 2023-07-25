@@ -7,12 +7,12 @@ x-app: &app
     - ".:/var/www/html"
   depends_on:
     - db
-  # tmpfs:
-  #   - /tmp
-  # networks:
-  #   - netcrud
-  # stdin_open: true
-  # tty: true
+  tmpfs:
+    - /tmp
+  networks:
+    - netcrud
+  stdin_open: true
+  tty: true
 
 services:
   web:
@@ -29,9 +29,6 @@ services:
     volumes:
       - "db-data:/var/lib/mysql"
       - "./app/Database/crud.sql:/docker-entrypoint-initdb.d/crud.sql"
-    # build: ./db
-    # volumes:
-    #   - "db-data:/var/lib/mysql"
     environment:
       - MYSQL_ROOT_PASSWORD=abc123
     networks:
@@ -45,4 +42,4 @@ volumes:
 
 networks:
   netcrud:
-    # driver: bridge
+    driver: bridge

@@ -19,19 +19,7 @@ Ter as seguintes ferramentas instaladas em seu computador:
 - [Composer](https://getcomposer.org/download/)
 - (opcional) [Uma ferramenta de manipulação do banco ex. Dbeaver](https://dbeaver.io/download/)
 
-## Passos para iniciar a aplicação
-Na raiz do projeto encontrará o arquivo `env` (contém as configurações do projeto), renomeie para `.env` e insira as configurações a seguir...
-
-```
-CI_ENVIRONMENT = development
-app.baseURL = 'http://localhost:8000/'
-database.default.hostname = (IP CONTAINER DB)
-database.default.database = crud
-database.default.username = root
-database.default.password = abc123
-database.default.DBDriver = MySQLi
-database.default.port = 3306
-```
+# Passos para iniciar a aplicação
 
 ## Entrar na pasta raiz do projeto via terminal para rodar comandos de inicialização das migrates, seeders, dependências e contêineres.
 Comandos para inicialização...
@@ -39,6 +27,20 @@ Comandos para inicialização...
 - `php composer install`
 - `docker build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID+$(id -g) .`
 - `docker compose up -d`
+- Necessário inspecionar o container "db" para pegar o ip local, rode o comando `docker container inspect db`, repare no resultado gerado no terminal, pegue endereço ip como ex: `"IPAddress": "172.20.0.2"`
+- Na raiz do projeto encontrará o arquivo `env` (contém as configurações do projeto), renomeie para `.env` e insira as configurações a seguir...
+
+```
+CI_ENVIRONMENT = development
+app.baseURL = 'http://localhost:8000/'
+database.default.hostname = (172.20.0.2 - EX: IP CONTAINER DB)
+database.default.database = crud
+database.default.username = root
+database.default.password = abc123
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
+
 - `php spark migrate`
 - `php spark db:seed User`
 
